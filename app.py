@@ -111,7 +111,7 @@ def get_courses():
     pages = int(request.args.get('pages', default=1))
     courses = scrape_classcentral_courses(query, pages)
     result = {
-        "scraped-courses" : len(courses),
+        "scraped-courses" : len(courses) if isinstance(courses, list) else 0,
         "courses": courses
     }
     return jsonify(result)
